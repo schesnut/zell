@@ -1,0 +1,13 @@
+.DS_Store
+Thumbs.db
+profile
+*.sublime-project
+*.sublime-workspace
+bower_components
+*.log
+*.html
+*.css
+dist
+node_modules
+dist
+
