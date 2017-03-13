@@ -1,0 +1,12 @@
+{
+  "images": [
+    {
+      "src": "image-foooneo.png",
+      "alt": "Image fooonee alt text"
+    },
+    {
+      "src": "image-latwoo.png",
+      "alt": "Image latwoo alt text"
+    }
+  ]
+}
