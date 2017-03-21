@@ -4,7 +4,8 @@ node_js:
 
 # Other settings
 script:
-- gulp test
+- "gulp"
+- "gulp test"
 
 before_script:
 - "export DISPLAY=:99.0"
