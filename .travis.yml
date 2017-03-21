@@ -4,7 +4,7 @@ node_js:
 
 # Other settings
 script:
-- "gulp"
+- "gulp dev-ci"
 - "gulp test"
 
 before_script:
@@ -15,5 +15,5 @@ install:
 - "npm install"
 - "npm install bower -g"
 - "bower install"
-# Install scss_lint gem
+# Install scss-lint gem
 - "gem install scss-lint"
