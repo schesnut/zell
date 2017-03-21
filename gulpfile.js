@@ -20,6 +20,7 @@ var jscs = require('gulp-jscs');
 var scssLint = require('gulp-scss-lint');
 var sassLint = require('gulp-sass-lint');
 var Server = require('karma').Server;
+var gutil = require('gulp-util');
 
 gulp.task('sass', function() {
         'use strict';
@@ -75,7 +76,8 @@ function customPlumber(errTitle) {
     if (process.env.CI) {
         return plumber({
             errorHandler: function(err) {
-                throw Error(err.message);
+                // Changes first line of error into red
+                throw Error(gutil.colors.red(err.message));
             }
         });
     } else {
