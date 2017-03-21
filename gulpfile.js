@@ -58,7 +58,7 @@ gulp.task('watch', function() {
     ], ['nunjucks']);
   });
 
-function customPlumber(errTitle) {
+/*function customPlumber(errTitle) {
   'use strict';
   return plumber({
         errorHandler: notify.onError({
@@ -68,7 +68,27 @@ function customPlumber(errTitle) {
             sound: 'submarine'
           })
       });
+}*/
+
+// Custom Plumber function for catching errors
+function customPlumber(errTitle) {
+    if (process.env.CI) {
+        return plumber({
+            errorHandler: function(err) {
+                throw Error(err.message);
+            }
+        });
+    } else {
+        return plumber({
+            errorHandler: notify.onError({
+                // Customizing error title
+                title: errTitle || 'Error running Gulp',
+                message: 'Error: <%= error.message %>',
+            })
+        });
+    }
 }
+
 
 gulp.task('browserSync', function() {
     'use strict';

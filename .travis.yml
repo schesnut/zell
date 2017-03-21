@@ -17,3 +17,5 @@ install:
 - "bower install"
 # Install scss-lint gem
 - "gem install scss-lint"
+
+env: CI=true
