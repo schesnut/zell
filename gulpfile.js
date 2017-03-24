@@ -22,8 +22,9 @@ var sassLint = require('gulp-sass-lint');
 var Server = require('karma').Server;
 var gutil = require('gulp-util');
 
+'use strict';
+
 gulp.task('sass', function() {
-        'use strict';
         return gulp.src('app/scss/**/*.scss')
         .pipe(customPlumber('Error Running Sass'))
         .pipe(sourcemaps.init())
@@ -46,7 +47,6 @@ gulp.task('sass', function() {
 gulp.task('watch-js', ['lint:js'], browserSync.reload);
 
 gulp.task('watch', function() {
-    'use strict';
     gulp.watch('app/scss/**/*.scss', ['sass', 'lint:sass']);
     gulp.watch('app/js/**/*.js', ['watch-js']);
     // Reloads the browser when a HTML file is saved
@@ -93,7 +93,6 @@ function customPlumber(errTitle) {
 
 
 gulp.task('browserSync', function() {
-    'use strict';
     browserSync({
         /*proxy: 'cheesehost:80',*/
         browser: ['google chrome', 'firefox', 'safari'],
@@ -104,7 +103,6 @@ gulp.task('browserSync', function() {
   });
 
 gulp.task('sprites', function() {
-    'use strict';
     gulp.src('app/images/sprites/**/*')
         .pipe(spritesmith({
             cssName: '_sprites.scss',
@@ -119,7 +117,6 @@ gulp.task('sprites', function() {
   });
 
 gulp.task('nunjucks', function() {
-        'use strict';
         // Gets .html and .nunjucks files in pages
         return gulp.src('app/pages/**/*.+(html|nunjucks)')
         .pipe(customPlumber('Error Running Nunjucks'))
@@ -138,7 +135,6 @@ gulp.task('nunjucks', function() {
       });
 
 gulp.task('clean:dev', function() {
-    'use strict';
     return del.sync([
         'app/css',
         // 'app/*.html'
@@ -147,14 +143,12 @@ gulp.task('clean:dev', function() {
 
 // Consolidated dev phase task
 gulp.task('default', function(callback) {
-    'use strict';
     runSequence('clean:dev', ['sprites', 'lint:js', 'lint:sass'], ['sass', 'nunjucks'], ['browserSync', 'watch'],
         callback
     );
   });
 
 gulp.task('lint:js', function() {
-        'use strict';
         return gulp.src('app/js/**/*.js')
         // Catching errors with customPlumber
         .pipe(customPlumber('JSHint Error'))
@@ -176,7 +170,6 @@ gulp.task('lint:js', function() {
       });
 
 gulp.task('lint:scss', function() {
-    'use strict';
     return gulp.src('app/scss/**/*.scss')
         // Linting files with SCSSLint
         .pipe(scssLint({
@@ -185,7 +178,6 @@ gulp.task('lint:scss', function() {
   });
 
 gulp.task('lint:sass', function() {
-    'use strict';
     return gulp.src('app/scss/**/*.scss')
         // Linting files with SassLint
         .pipe(sassLint({
@@ -201,7 +193,6 @@ gulp.task('lint:sass', function() {
   });
 
 gulp.task('test', function(done) {
-    'use strict';
     new Server({
         configFile: process.cwd() + '/karma.conf.js',
         singleRun: true
